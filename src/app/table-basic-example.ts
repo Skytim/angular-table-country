@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from './components/modal/modal.component';
+import { Country } from './model/country';
 import { PeriodicElement } from './model/periodic-element';
 import { ELEMENT_DATA } from './model/periodic-element';
+import { CountriesService } from './services/countries.service';
 
 /**
  * @title Basic use of `<table mat-table>`
@@ -12,11 +14,20 @@ import { ELEMENT_DATA } from './model/periodic-element';
   styleUrls: ['table-basic-example.css'],
   templateUrl: 'table-basic-example.html'
 })
-export class TableBasicExample {
+export class TableBasicExample implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    public dialog: MatDialog,
+    public countriesService: CountriesService
+  ) {}
   value: PeriodicElement;
+
+  ngOnInit() {
+    this.countriesService.getService().subscribe((countries: Country[]) => {
+      console.log(countries[0]);
+    });
+  }
 
   openDialog(data: PeriodicElement): void {
     const dialogRef = this.dialog.open(ModalComponent, {
