@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from './components/modal/modal.component';
 import { Country } from './model/country';
 import { PeriodicElement } from './model/periodic-element';
-import { ELEMENT_DATA } from './model/periodic-element';
 import { CountriesService } from './services/countries.service';
 
 /**
@@ -15,8 +14,17 @@ import { CountriesService } from './services/countries.service';
   templateUrl: 'table-basic-example.html'
 })
 export class TableBasicExample implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = [
+    'flag',
+    'name',
+    'alpha2Code',
+    'alpha3Code',
+    'nativeName',
+    'altSpellings',
+    'callingCodes'
+  ];
+
+  dataSource: Country[] = [];
   constructor(
     public dialog: MatDialog,
     public countriesService: CountriesService
@@ -25,7 +33,8 @@ export class TableBasicExample implements OnInit {
 
   ngOnInit() {
     this.countriesService.getService().subscribe((countries: Country[]) => {
-      console.log(countries[0]);
+      // console.log(countries[0]);
+      this.dataSource = countries;
     });
   }
 
@@ -41,7 +50,3 @@ export class TableBasicExample implements OnInit {
     });
   }
 }
-
-/**  Copyright 2021 Google LLC. All Rights Reserved.
-    Use of this source code is governed by an MIT-style license that
-    can be found in the LICENSE file at http://angular.io/license */
