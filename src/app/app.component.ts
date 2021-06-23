@@ -4,18 +4,17 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ModalComponent } from './components/modal/modal.component';
 import { Country } from './model/country';
-import { PeriodicElement } from './model/periodic-element';
 import { CountriesService } from './services/countries.service';
 import { MatSort } from '@angular/material/sort';
 import { debounceTime, distinctUntilChanged } from 'rxjs/internal/operators';
 import { Subject } from 'rxjs/internal/Subject';
 
 @Component({
-  selector: 'table-basic-example',
-  styleUrls: ['table-basic-example.css'],
-  templateUrl: 'table-basic-example.html'
+  selector: 'app-component',
+  styleUrls: ['app.component.css'],
+  templateUrl: 'app.component.html'
 })
-export class TableBasicExample implements OnInit {
+export class AppComponent implements OnInit {
   displayedColumns: string[] = [
     'flag',
     'name',
@@ -61,7 +60,7 @@ export class TableBasicExample implements OnInit {
 
   openDialog(data: Country): void {
     const dialogRef = this.dialog.open(ModalComponent, {
-      width: '650px',
+      width: '70%',
       data: data
     });
     console.log(dialogRef);

@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoMaterialModule } from './app/material-module';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
-import { TableBasicExample } from './app/table-basic-example';
+import { AppComponent } from './app/app.component';
 import { ModalComponent } from './app/components/modal/modal.component';
 
 // Default MatFormField appearance to 'fill' as that is the new recommended approach and the
@@ -24,9 +24,9 @@ import { ModalComponent } from './app/components/modal/modal.component';
     MatNativeDateModule,
     ReactiveFormsModule
   ],
-  entryComponents: [TableBasicExample, ModalComponent],
-  declarations: [TableBasicExample, ModalComponent],
-  bootstrap: [TableBasicExample],
+  entryComponents: [AppComponent, ModalComponent],
+  declarations: [AppComponent, ModalComponent],
+  bootstrap: [AppComponent],
   providers: [
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
