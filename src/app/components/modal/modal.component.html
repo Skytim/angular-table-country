@@ -1,3 +1,75 @@
-<p>
-modal works!
-</p>
+<img mat-card-image src="{{data.flag}}" alt="{{data.name}}">
+<h2 mat-dialog-title> {{data.name}}</h2>
+<mat-dialog-content class="mat-typography">
+
+  <mat-grid-list cols="3" rowHeight="5:1">
+    <mat-grid-tile>
+      <div class="text-inside-grid">網域：{{ data.topLevelDomain }}</div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="text-inside-grid">首都: {{data.capital}}</div>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <div class="text-inside-grid">人口數:{{data.population}}</div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="text-inside-grid">經緯度:{{data.latlng}}</div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="text-inside-grid">自稱: {{data.demonym}}</div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="text-inside-grid">時區: {{data.timezones}}</div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="text-inside-grid">交界國: {{data.borders}}</div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="text-inside-grid">原名: {{data.nativeName}}</div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="text-inside-grid">國家代碼: {{data.numericCode}}</div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="text-inside-grid">地區: {{data.region}}</div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="text-inside-grid">亞區: {{data.subregion}}</div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="3">
+      <div class="text-inside-grid">
+        貨幣:
+        <span *ngFor="let currency of data.currencies">
+          {{currency.name}}
+          {{currency.symbol}}
+          {{currency.code}}
+        </span>
+      </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="3">
+      <div class="text-inside-grid">
+        翻譯:
+        <span *ngFor="let translation of data.translations | keyvalue">
+         {{translation.key}}:{{translation.value}}
+  
+        </span>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="3">
+      <div class="text-inside-grid">
+        隸屬集團:
+        <span *ngFor="let regionalBloc of data.regionalBlocs ">
+          {{regionalBloc.acronym}},
+          {{regionalBloc.name}},
+          {{regionalBloc.otherAcronyms}},
+          {{regionalBloc.otherNames}}
+        </span>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

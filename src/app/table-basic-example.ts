@@ -61,10 +61,10 @@ export class TableBasicExample implements OnInit {
 
   openDialog(data: Country): void {
     const dialogRef = this.dialog.open(ModalComponent, {
-      width: '250px',
+      width: '650px',
       data: data
     });
-
+    console.log(dialogRef);
     dialogRef.afterClosed().subscribe(result => {});
   }
   searchNameOnChange() {

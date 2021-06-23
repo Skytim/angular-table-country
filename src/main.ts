@@ -9,6 +9,7 @@ import { DemoMaterialModule } from './app/material-module';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 import { TableBasicExample } from './app/table-basic-example';
+import { ModalComponent } from './app/components/modal/modal.component';
 
 // Default MatFormField appearance to 'fill' as that is the new recommended approach and the
 // `legacy` and `standard` appearances are scheduled for deprecation in version 10.
@@ -23,8 +24,8 @@ import { TableBasicExample } from './app/table-basic-example';
     MatNativeDateModule,
     ReactiveFormsModule
   ],
-  entryComponents: [TableBasicExample],
-  declarations: [TableBasicExample],
+  entryComponents: [TableBasicExample, ModalComponent],
+  declarations: [TableBasicExample, ModalComponent],
   bootstrap: [TableBasicExample],
   providers: [
     {
