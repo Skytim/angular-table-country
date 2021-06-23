@@ -1,11 +1,31 @@
 table {
   width: 100%;
 }
-.mat-column-name {
-  width: 100px;
-  max-width: 150px;
+.mat-column-flag {
+  width: 50px;
+  max-width: 75px;
 }
 .mat-column-name {
   width: 100px;
   max-width: 150px;
+}
+.mat-column-alpha2Code {
+  width: 50px;
+  max-width: 70px;
+}
+.mat-column-alpha3Code {
+  width: 50px;
+  max-width: 70px;
+}
+.mat-column-nativeName {
+  width: 100px;
+  max-width: 150px;
+}
+.mat-column-altSpellings {
+  width: 100px;
+  max-width: 150px;
+}
+.mat-column-callingCodes {
+  width: 50px;
+  max-width: 75px;
 }

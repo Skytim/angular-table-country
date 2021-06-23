@@ -6,10 +6,10 @@ import { ModalComponent } from './components/modal/modal.component';
 import { Country } from './model/country';
 import { PeriodicElement } from './model/periodic-element';
 import { CountriesService } from './services/countries.service';
+import { MatSort } from '@angular/material/sort';
+import { debounceTime, distinctUntilChanged } from 'rxjs/internal/operators';
+import { Subject } from 'rxjs/internal/Subject';
 
-/**
- * @title Basic use of `<table mat-table>`
- */
 @Component({
   selector: 'table-basic-example',
   styleUrls: ['table-basic-example.css'],
@@ -25,32 +25,49 @@ export class TableBasicExample implements OnInit {
     'altSpellings',
     'callingCodes'
   ];
-
+  searchName = '';
+  countryData: Country[];
   dataSource: MatTableDataSource<Country>;
+  txtQueryChanged: Subject<string> = new Subject<string>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
-
+  @ViewChild(MatSort) sort: MatSort;
   constructor(
     public dialog: MatDialog,
     public countriesService: CountriesService
-  ) {}
-  value: PeriodicElement;
+  ) {
+    this.txtQueryChanged
+      .pipe(
+        debounceTime(1000),
+        distinctUntilChanged()
+      )
+      .subscribe(model => {
+        this.searchName = model;
+        let filterData = this.countryData.filter(x => x.name.includes(model));
+        this.setTable(filterData);
+      });
+  }
 
   ngOnInit() {
     this.countriesService.getService().subscribe((countries: Country[]) => {
-      this.dataSource = new MatTableDataSource<Country>(countries);
-      this.dataSource.paginator = this.paginator;
+      this.countryData = countries;
+      this.setTable(countries);
     });
   }
+  setTable(countries: Country[]) {
+    this.dataSource = new MatTableDataSource<Country>(countries);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
 
-  openDialog(data: PeriodicElement): void {
+  openDialog(data: Country): void {
     const dialogRef = this.dialog.open(ModalComponent, {
       width: '250px',
       data: data
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.value = result;
-    });
+    dialogRef.afterClosed().subscribe(result => {});
+  }
+  searchNameOnChange() {
+    this.txtQueryChanged.next(this.searchName);
   }
 }
