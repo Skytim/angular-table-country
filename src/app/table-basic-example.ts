@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { ModalComponent } from './components/modal/modal.component';
 import { Country } from './model/country';
 import { PeriodicElement } from './model/periodic-element';
@@ -24,7 +26,9 @@ export class TableBasicExample implements OnInit {
     'callingCodes'
   ];
 
-  dataSource: Country[] = [];
+  dataSource: MatTableDataSource<Country>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
   constructor(
     public dialog: MatDialog,
     public countriesService: CountriesService
@@ -33,8 +37,8 @@ export class TableBasicExample implements OnInit {
 
   ngOnInit() {
     this.countriesService.getService().subscribe((countries: Country[]) => {
-      // console.log(countries[0]);
-      this.dataSource = countries;
+      this.dataSource = new MatTableDataSource<Country>(countries);
+      this.dataSource.paginator = this.paginator;
     });
   }
 
