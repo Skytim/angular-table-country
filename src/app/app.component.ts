@@ -41,7 +41,7 @@ export class AppComponent implements OnInit {
       )
       .subscribe(model => {
         this.searchName = model;
-        let filterData = this.countryData.filter(x => x.name.includes(model));
+        let filterData = this.countryData.filter(x => x.name.toLocaleLowerCase().includes(model.toLocaleLowerCase()));
         this.setTable(filterData);
       });
   }

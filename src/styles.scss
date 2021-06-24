@@ -1,4 +1,4 @@
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 body {
   font-family: Roboto, Arial, sans-serif;
@@ -15,4 +15,8 @@ img {
 .text-inside-grid {
   position: absolute;
   left: 5px;
+}
+
+.center {
+  text-align: center;
 }

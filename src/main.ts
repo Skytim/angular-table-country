@@ -1,3 +1,4 @@
+import { LazyImgDirective } from './app/directives/lady-img.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -25,7 +26,7 @@ import { ModalComponent } from './app/components/modal/modal.component';
     ReactiveFormsModule
   ],
   entryComponents: [AppComponent, ModalComponent],
-  declarations: [AppComponent, ModalComponent],
+  declarations: [AppComponent, ModalComponent, LazyImgDirective],
   bootstrap: [AppComponent],
   providers: [
     {
@@ -34,12 +35,8 @@ import { ModalComponent } from './app/components/modal/modal.component';
     }
   ]
 })
-export class AppModule {}
+export class AppModule { }
 
 platformBrowserDynamic()
   .bootstrapModule(AppModule)
   .catch(err => console.error(err));
-
-/**  Copyright 2021 Google LLC. All Rights Reserved.
-    Use of this source code is governed by an MIT-style license that
-    can be found in the LICENSE file at http://angular.io/license */
